@@ -135,7 +135,7 @@ namespace ScaleNearestNeighborWinFormCSharp
         {
             m_tokenSource = new CancellationTokenSource();
             CancellationToken token = m_tokenSource.Token;
-            float fScale = float.Parse(labelValue.Text);
+            float fScale = (float)(sliderScale.Value * 0.1);
             bool bRst = await Task.Run(() => ScaleNearestNeighbor(fScale, token));
             return bRst;
         }
