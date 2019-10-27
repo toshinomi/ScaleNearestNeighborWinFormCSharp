@@ -96,11 +96,6 @@ namespace ScaleNearestNeighborWinFormCSharp
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(labelValue.Text))
-            {
-                return;
-            }
-
             btnFileSelect.Enabled = false;
             btnSaveImage.Enabled = false;
             btnInit.Enabled = false;
