@@ -41,6 +41,7 @@
             this.sliderScale = new System.Windows.Forms.TrackBar();
             this.btnGo = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.lblSelectFileName = new System.Windows.Forms.Label();
             this.groupBoxImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBoxOperation.SuspendLayout();
@@ -60,6 +61,7 @@
             // 
             // groupBoxImage
             // 
+            this.groupBoxImage.Controls.Add(this.lblSelectFileName);
             this.groupBoxImage.Controls.Add(this.pictureBox);
             this.groupBoxImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBoxImage.Location = new System.Drawing.Point(267, 37);
@@ -74,9 +76,9 @@
             // pictureBox
             // 
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox.Location = new System.Drawing.Point(9, 28);
+            this.pictureBox.Location = new System.Drawing.Point(9, 49);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(550, 539);
+            this.pictureBox.Size = new System.Drawing.Size(550, 518);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 3;
             this.pictureBox.TabStop = false;
@@ -91,7 +93,7 @@
             this.btnInit.TabIndex = 3;
             this.btnInit.Text = "Init";
             this.btnInit.UseVisualStyleBackColor = true;
-            this.btnInit.Click += new System.EventHandler(this.OnClickBtnClose);
+            this.btnInit.Click += new System.EventHandler(this.OnClickBtnInit);
             // 
             // btnClose
             // 
@@ -103,7 +105,7 @@
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.OnClickBtnInit);
+            this.btnClose.Click += new System.EventHandler(this.OnClickBtnClose);
             // 
             // btnFileSelect
             // 
@@ -112,7 +114,7 @@
             this.btnFileSelect.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnFileSelect.Name = "btnFileSelect";
             this.btnFileSelect.Size = new System.Drawing.Size(150, 50);
-            this.btnFileSelect.TabIndex = 2;
+            this.btnFileSelect.TabIndex = 1;
             this.btnFileSelect.Text = "File Select...";
             this.btnFileSelect.UseVisualStyleBackColor = true;
             this.btnFileSelect.Click += new System.EventHandler(this.OnClickBtnFileSelect);
@@ -141,7 +143,7 @@
             this.btnSaveImage.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(150, 50);
-            this.btnSaveImage.TabIndex = 9;
+            this.btnSaveImage.TabIndex = 2;
             this.btnSaveImage.Text = "Save Image...";
             this.btnSaveImage.UseVisualStyleBackColor = true;
             this.btnSaveImage.Click += new System.EventHandler(this.OnClickBtnSaveImage);
@@ -177,7 +179,7 @@
             this.sliderScale.Minimum = 1;
             this.sliderScale.Name = "sliderScale";
             this.sliderScale.Size = new System.Drawing.Size(150, 40);
-            this.sliderScale.TabIndex = 10;
+            this.sliderScale.TabIndex = 5;
             this.sliderScale.Value = 10;
             this.sliderScale.Scroll += new System.EventHandler(this.OnScrollSliderScale);
             // 
@@ -188,7 +190,7 @@
             this.btnGo.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(150, 37);
-            this.btnGo.TabIndex = 9;
+            this.btnGo.TabIndex = 6;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
             this.btnGo.Click += new System.EventHandler(this.OnClickBtnGo);
@@ -200,6 +202,13 @@
             this.progressBar.Size = new System.Drawing.Size(820, 15);
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 8;
+            // 
+            // lblSelectFileName
+            // 
+            this.lblSelectFileName.Location = new System.Drawing.Point(9, 25);
+            this.lblSelectFileName.Name = "lblSelectFileName";
+            this.lblSelectFileName.Size = new System.Drawing.Size(550, 21);
+            this.lblSelectFileName.TabIndex = 4;
             // 
             // FormMain
             // 
@@ -240,6 +249,7 @@
         private System.Windows.Forms.Label labelValue;
         private System.Windows.Forms.Button btnSaveImage;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label lblSelectFileName;
     }
 }
 

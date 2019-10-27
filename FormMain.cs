@@ -59,6 +59,7 @@ namespace ScaleNearestNeighborWinFormCSharp
                 pictureBox.Image = null;
                 m_strOpenFileName = openFileDlg.FileName;
                 pictureBox.ImageLocation = m_strOpenFileName;
+                lblSelectFileName.Text = m_strOpenFileName;
             }
 
             return;
@@ -108,7 +109,7 @@ namespace ScaleNearestNeighborWinFormCSharp
 
             progressBar.Value = 0;
             progressBar.Minimum = 0;
-            float fScale = float.Parse(labelValue.Text);
+            float fScale = (float)(sliderScale.Value * 0.1);
             int nWidth = (int)(m_bitmapOrg.Width * fScale);
             int nHeight = (int)(m_bitmapOrg.Height * fScale);
             progressBar.Maximum = nWidth * nHeight;
@@ -231,16 +232,4 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
     }
-}
-
-public class ComInfo
-{
-    public enum Pixel
-    {
-        B = 0,
-        G,
-        R,
-        A,
-        MAX,
-    };
 }

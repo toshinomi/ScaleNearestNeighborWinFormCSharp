@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComInfo.cs" />
     <Compile Include="ComOpenFileDialog.cs" />
     <Compile Include="ComSaveFileDialog.cs" />
     <Compile Include="FormMain.cs">
