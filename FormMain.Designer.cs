@@ -30,22 +30,22 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.groupBoxImage = new System.Windows.Forms.GroupBox();
+            this.lblSelectFileName = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnInit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnFileSelect = new System.Windows.Forms.Button();
             this.groupBoxOperation = new System.Windows.Forms.GroupBox();
             this.btnSaveImage = new System.Windows.Forms.Button();
-            this.groupBoxAffine = new System.Windows.Forms.GroupBox();
+            this.groupBoxScale = new System.Windows.Forms.GroupBox();
             this.labelValue = new System.Windows.Forms.Label();
             this.sliderScale = new System.Windows.Forms.TrackBar();
             this.btnGo = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.lblSelectFileName = new System.Windows.Forms.Label();
             this.groupBoxImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBoxOperation.SuspendLayout();
-            this.groupBoxAffine.SuspendLayout();
+            this.groupBoxScale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderScale)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,6 +72,13 @@
             this.groupBoxImage.TabIndex = 6;
             this.groupBoxImage.TabStop = false;
             this.groupBoxImage.Text = "Image";
+            // 
+            // lblSelectFileName
+            // 
+            this.lblSelectFileName.Location = new System.Drawing.Point(9, 25);
+            this.lblSelectFileName.Name = "lblSelectFileName";
+            this.lblSelectFileName.Size = new System.Drawing.Size(550, 21);
+            this.lblSelectFileName.TabIndex = 4;
             // 
             // pictureBox
             // 
@@ -125,7 +132,7 @@
             this.groupBoxOperation.Controls.Add(this.btnInit);
             this.groupBoxOperation.Controls.Add(this.btnClose);
             this.groupBoxOperation.Controls.Add(this.btnFileSelect);
-            this.groupBoxOperation.Controls.Add(this.groupBoxAffine);
+            this.groupBoxOperation.Controls.Add(this.groupBoxScale);
             this.groupBoxOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBoxOperation.Location = new System.Drawing.Point(15, 37);
             this.groupBoxOperation.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
@@ -148,17 +155,17 @@
             this.btnSaveImage.UseVisualStyleBackColor = true;
             this.btnSaveImage.Click += new System.EventHandler(this.OnClickBtnSaveImage);
             // 
-            // groupBoxAffine
+            // groupBoxScale
             // 
-            this.groupBoxAffine.Controls.Add(this.labelValue);
-            this.groupBoxAffine.Controls.Add(this.sliderScale);
-            this.groupBoxAffine.Controls.Add(this.btnGo);
-            this.groupBoxAffine.Location = new System.Drawing.Point(31, 302);
-            this.groupBoxAffine.Name = "groupBoxAffine";
-            this.groupBoxAffine.Size = new System.Drawing.Size(183, 148);
-            this.groupBoxAffine.TabIndex = 8;
-            this.groupBoxAffine.TabStop = false;
-            this.groupBoxAffine.Text = "Scale";
+            this.groupBoxScale.Controls.Add(this.labelValue);
+            this.groupBoxScale.Controls.Add(this.sliderScale);
+            this.groupBoxScale.Controls.Add(this.btnGo);
+            this.groupBoxScale.Location = new System.Drawing.Point(31, 302);
+            this.groupBoxScale.Name = "groupBoxScale";
+            this.groupBoxScale.Size = new System.Drawing.Size(183, 148);
+            this.groupBoxScale.TabIndex = 8;
+            this.groupBoxScale.TabStop = false;
+            this.groupBoxScale.Text = "Scale";
             // 
             // labelValue
             // 
@@ -203,13 +210,6 @@
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 8;
             // 
-            // lblSelectFileName
-            // 
-            this.lblSelectFileName.Location = new System.Drawing.Point(9, 25);
-            this.lblSelectFileName.Name = "lblSelectFileName";
-            this.lblSelectFileName.Size = new System.Drawing.Size(550, 21);
-            this.lblSelectFileName.TabIndex = 4;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
@@ -228,7 +228,7 @@
             this.groupBoxImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.groupBoxOperation.ResumeLayout(false);
-            this.groupBoxAffine.ResumeLayout(false);
+            this.groupBoxScale.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sliderScale)).EndInit();
             this.ResumeLayout(false);
 
@@ -243,7 +243,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnFileSelect;
         private System.Windows.Forms.GroupBox groupBoxOperation;
-        private System.Windows.Forms.GroupBox groupBoxAffine;
+        private System.Windows.Forms.GroupBox groupBoxScale;
         private System.Windows.Forms.TrackBar sliderScale;
         private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.Label labelValue;

@@ -100,7 +100,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = false;
             btnInit.Enabled = false;
             btnClose.Enabled = false;
-            groupBoxAffine.Enabled = false;
+            groupBoxScale.Enabled = false;
 
             progressBar.Value = 0;
             progressBar.Minimum = 0;
@@ -121,7 +121,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = true;
             btnInit.Enabled = true;
             btnClose.Enabled = true;
-            groupBoxAffine.Enabled = true;
+            groupBoxScale.Enabled = true;
 
             return;
         }
