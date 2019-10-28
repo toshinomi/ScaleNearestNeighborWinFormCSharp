@@ -14,10 +14,9 @@ namespace ScaleNearestNeighborWinFormCSharp
 {
     public partial class FormMain : Form
     {
-        private Point   m_mousePoint;
-        private string  m_strOpenFileName;
-        private Bitmap  m_bitmapOrg;
-        private Bitmap  m_bitmapAfter;
+        private Point m_mousePoint;
+        private string m_strOpenFileName;
+        private ScaleNearestNeighbor m_scaleImgProc;
         private CancellationTokenSource m_tokenSource;
 
         public FormMain()
@@ -26,6 +25,8 @@ namespace ScaleNearestNeighborWinFormCSharp
 
             lblTitle.MouseDown += new MouseEventHandler(OnMouseDownFormMain);
             lblTitle.MouseMove += new MouseEventHandler(OnMouseMoveFormMain);
+
+            m_scaleImgProc = new ScaleNearestNeighbor(progressBar);
 
             labelValue.Text = "1";
         }
@@ -54,8 +55,6 @@ namespace ScaleNearestNeighborWinFormCSharp
             openFileDlg.Title = "Open the file";
             if (openFileDlg.ShowDialog() == true)
             {
-                m_bitmapOrg = new Bitmap(openFileDlg.FileName);
-
                 pictureBox.Image = null;
                 m_strOpenFileName = openFileDlg.FileName;
                 pictureBox.ImageLocation = m_strOpenFileName;
@@ -105,8 +104,9 @@ namespace ScaleNearestNeighborWinFormCSharp
             progressBar.Value = 0;
             progressBar.Minimum = 0;
             float fScale = (float)(sliderScale.Value * 0.1);
-            int nWidth = (int)(m_bitmapOrg.Width * fScale);
-            int nHeight = (int)(m_bitmapOrg.Height * fScale);
+            var bitmap = new Bitmap(m_strOpenFileName);
+            int nWidth = (int)(bitmap.Width * fScale);
+            int nHeight = (int)(bitmap.Height * fScale);
             progressBar.Maximum = nWidth * nHeight;
 
             pictureBox.Image = null;
@@ -114,7 +114,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             bool bResult = await TaskWorkImageProcessing();
             if (bResult)
             {
-                pictureBox.Image = m_bitmapAfter;
+                pictureBox.Image = m_scaleImgProc.bitmap;
             }
 
             btnFileSelect.Enabled = true;
@@ -122,6 +122,8 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnInit.Enabled = true;
             btnClose.Enabled = true;
             groupBoxScale.Enabled = true;
+
+            bitmap.Dispose();
 
             return;
         }
@@ -131,74 +133,10 @@ namespace ScaleNearestNeighborWinFormCSharp
             m_tokenSource = new CancellationTokenSource();
             CancellationToken token = m_tokenSource.Token;
             float fScale = (float)(sliderScale.Value * 0.1);
-            bool bRst = await Task.Run(() => ScaleNearestNeighbor(fScale, token));
+            var bitmap = new Bitmap(m_strOpenFileName);
+            bool bRst = await Task.Run(() => m_scaleImgProc.GoImgProc(bitmap, fScale, token, this));
+            bitmap.Dispose();
             return bRst;
-        }
-
-        private bool ScaleNearestNeighbor(float _fScale, CancellationToken _token)
-        {
-            bool bRst = true;
-
-            int nWidthSize = (int)(m_bitmapOrg.Width * _fScale);
-            int nHeightSize = (int)(m_bitmapOrg.Height * _fScale);
-
-            m_bitmapAfter = new Bitmap(nWidthSize, nHeightSize);
-
-            BitmapData bitmapDataOrg = m_bitmapOrg.LockBits(new Rectangle(0, 0, m_bitmapOrg.Width, m_bitmapOrg.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
-            BitmapData bitmapDataAfter = m_bitmapAfter.LockBits(new Rectangle(0, 0, m_bitmapAfter.Width, m_bitmapAfter.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-
-            int nIdxWidth;
-            int nIdxHeight;
-            int nCount = 0;
-
-            unsafe
-            {
-                for (nIdxHeight = 0; nIdxHeight < nHeightSize; nIdxHeight++)
-                {
-                    if (_token.IsCancellationRequested)
-                    {
-                        bRst = false;
-                        break;
-                    }
-
-                    for (nIdxWidth = 0; nIdxWidth < nWidthSize; nIdxWidth++)
-                    {
-                        if (_token.IsCancellationRequested)
-                        {
-                            bRst = false;
-                            break;
-                        }
-
-                        int nWidth = (int)Math.Round(nIdxWidth / _fScale);
-                        int nHeight = (int)Math.Round(nIdxHeight / _fScale);
-
-                        if (nWidth < m_bitmapOrg.Width && nHeight < m_bitmapOrg.Height)
-                        {
-
-                            byte* pPixelOrg = (byte*)bitmapDataOrg.Scan0 + nHeight * bitmapDataOrg.Stride + nWidth * 4;
-                            byte* pPixelAfter = (byte*)bitmapDataAfter.Scan0 + nIdxHeight * bitmapDataAfter.Stride + nIdxWidth * 4;
-
-
-                            pPixelAfter[(int)ComInfo.Pixel.B] = pPixelOrg[(int)ComInfo.Pixel.B];
-                            pPixelAfter[(int)ComInfo.Pixel.G] = pPixelOrg[(int)ComInfo.Pixel.G];
-                            pPixelAfter[(int)ComInfo.Pixel.R] = pPixelOrg[(int)ComInfo.Pixel.R];
-                            pPixelAfter[(int)ComInfo.Pixel.A] = pPixelOrg[(int)ComInfo.Pixel.A];
-
-                            nCount++;
-                        }
-                    }
-                    Invoke(new Action<int>(SetProgressBar), nCount);
-                }
-                m_bitmapOrg.UnlockBits(bitmapDataOrg);
-                m_bitmapAfter.UnlockBits(bitmapDataAfter);
-            }
-
-            return bRst;
-        }
-
-        private void SetProgressBar(int nCount)
-        {
-            progressBar.Value = nCount;
         }
 
         private void OnClickBtnSaveImage(object sender, EventArgs e)
@@ -209,7 +147,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             if (saveDialog.ShowDialog() == true)
             {
                 string strFileName = saveDialog.FileName;
-                var bitmap = m_bitmapAfter;
+                var bitmap = m_scaleImgProc.bitmap;
                 if (bitmap != null)
                 {
                     try
