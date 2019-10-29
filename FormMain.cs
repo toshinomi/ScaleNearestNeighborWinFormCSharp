@@ -29,6 +29,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             m_scaleImgProc = new ScaleNearestNeighbor(progressBar);
 
             labelValue.Text = "1";
+            btnSaveImage.Enabled = false;
         }
 
         private void OnMouseDownFormMain(object sender, MouseEventArgs e)
@@ -59,6 +60,7 @@ namespace ScaleNearestNeighborWinFormCSharp
                 m_strOpenFileName = openFileDlg.FileName;
                 pictureBox.ImageLocation = m_strOpenFileName;
                 lblSelectFileName.Text = m_strOpenFileName;
+                m_scaleImgProc.Init();
             }
 
             return;
@@ -79,6 +81,8 @@ namespace ScaleNearestNeighborWinFormCSharp
             {
                 pictureBox.ImageLocation = m_strOpenFileName;
             }
+            m_scaleImgProc.Init();
+            btnSaveImage.Enabled = false;
         }
 
         private void OnScrollSliderScale(object sender, EventArgs e)
@@ -116,6 +120,7 @@ namespace ScaleNearestNeighborWinFormCSharp
             if (bResult)
             {
                 pictureBox.Image = m_scaleImgProc.bitmap;
+                btnSaveImage.Enabled = true;
             }
             else
             {
@@ -123,7 +128,6 @@ namespace ScaleNearestNeighborWinFormCSharp
             }
 
             btnFileSelect.Enabled = true;
-            btnSaveImage.Enabled = true;
             btnInit.Enabled = true;
             btnClose.Enabled = true;
             sliderScale.Enabled = true;
