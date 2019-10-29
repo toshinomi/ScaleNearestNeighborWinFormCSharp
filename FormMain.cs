@@ -99,7 +99,8 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = false;
             btnInit.Enabled = false;
             btnClose.Enabled = false;
-            groupBoxScale.Enabled = false;
+            sliderScale.Enabled = false;
+            btnGo.Enabled = false;
 
             progressBar.Value = 0;
             progressBar.Minimum = 0;
@@ -121,7 +122,8 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = true;
             btnInit.Enabled = true;
             btnClose.Enabled = true;
-            groupBoxScale.Enabled = true;
+            sliderScale.Enabled = true;
+            btnGo.Enabled = true;
 
             bitmap.Dispose();
 
@@ -160,6 +162,17 @@ namespace ScaleNearestNeighborWinFormCSharp
                     }
                     bitmap.Dispose();
                 }
+            }
+
+            return;
+        }
+
+        private void OnClickBtnStop(object sender, EventArgs e)
+        {
+            if (m_tokenSource != null)
+            {
+                m_tokenSource.Cancel();
+                OnClickBtnInit(null, null);
             }
 
             return;

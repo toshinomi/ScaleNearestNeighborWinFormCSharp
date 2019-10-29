@@ -82,7 +82,10 @@ class ScaleNearestNeighbor
                         nCount++;
                     }
                 }
-                _form.Invoke(new Action<int>(SetProgressBar), nCount);
+                if (m_progressBar != null && _form != null)
+                {
+                    _form.Invoke(new Action<int>(SetProgressBar), nCount);
+                }
             }
             _bitmap.UnlockBits(bitmapDataOrg);
             m_bitmap.UnlockBits(bitmapDataAfter);

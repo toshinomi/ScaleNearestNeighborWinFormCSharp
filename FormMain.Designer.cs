@@ -42,6 +42,7 @@
             this.sliderScale = new System.Windows.Forms.TrackBar();
             this.btnGo = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.btnStop = new System.Windows.Forms.Button();
             this.groupBoxImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBoxOperation.SuspendLayout();
@@ -157,12 +158,13 @@
             // 
             // groupBoxScale
             // 
+            this.groupBoxScale.Controls.Add(this.btnStop);
             this.groupBoxScale.Controls.Add(this.labelValue);
             this.groupBoxScale.Controls.Add(this.sliderScale);
             this.groupBoxScale.Controls.Add(this.btnGo);
             this.groupBoxScale.Location = new System.Drawing.Point(31, 302);
             this.groupBoxScale.Name = "groupBoxScale";
-            this.groupBoxScale.Size = new System.Drawing.Size(183, 148);
+            this.groupBoxScale.Size = new System.Drawing.Size(183, 200);
             this.groupBoxScale.TabIndex = 8;
             this.groupBoxScale.TabStop = false;
             this.groupBoxScale.Text = "Scale";
@@ -210,6 +212,18 @@
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 8;
             // 
+            // btnStop
+            // 
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.Location = new System.Drawing.Point(19, 144);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(150, 37);
+            this.btnStop.TabIndex = 12;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.OnClickBtnStop);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 20F);
@@ -250,6 +264,7 @@
         private System.Windows.Forms.Button btnSaveImage;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblSelectFileName;
+        private System.Windows.Forms.Button btnStop;
     }
 }
 
