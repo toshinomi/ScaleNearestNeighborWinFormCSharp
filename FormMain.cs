@@ -117,6 +117,10 @@ namespace ScaleNearestNeighborWinFormCSharp
             {
                 pictureBox.Image = m_scaleImgProc.bitmap;
             }
+            else
+            {
+                pictureBox.ImageLocation = m_strOpenFileName;
+            }
 
             btnFileSelect.Enabled = true;
             btnSaveImage.Enabled = true;
@@ -172,7 +176,6 @@ namespace ScaleNearestNeighborWinFormCSharp
             if (m_tokenSource != null)
             {
                 m_tokenSource.Cancel();
-                OnClickBtnInit(null, null);
             }
 
             return;
