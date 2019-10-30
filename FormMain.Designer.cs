@@ -38,11 +38,13 @@
             this.groupBoxOperation = new System.Windows.Forms.GroupBox();
             this.btnSaveImage = new System.Windows.Forms.Button();
             this.groupBoxScale = new System.Windows.Forms.GroupBox();
+            this.btnStop = new System.Windows.Forms.Button();
             this.labelValue = new System.Windows.Forms.Label();
             this.sliderScale = new System.Windows.Forms.TrackBar();
             this.btnGo = new System.Windows.Forms.Button();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.btnStop = new System.Windows.Forms.Button();
+            this.btnCloseIcon = new System.Windows.Forms.Button();
+            this.btnMinimizedIcon = new System.Windows.Forms.Button();
             this.groupBoxImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.groupBoxOperation.SuspendLayout();
@@ -169,6 +171,18 @@
             this.groupBoxScale.TabStop = false;
             this.groupBoxScale.Text = "Scale";
             // 
+            // btnStop
+            // 
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.Location = new System.Drawing.Point(19, 144);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(150, 37);
+            this.btnStop.TabIndex = 12;
+            this.btnStop.Text = "Stop";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.OnClickBtnStop);
+            // 
             // labelValue
             // 
             this.labelValue.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -212,17 +226,31 @@
             this.progressBar.Step = 1;
             this.progressBar.TabIndex = 8;
             // 
-            // btnStop
+            // btnCloseIcon
             // 
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.Location = new System.Drawing.Point(19, 144);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(150, 37);
-            this.btnStop.TabIndex = 12;
-            this.btnStop.Text = "Stop";
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.OnClickBtnStop);
+            this.btnCloseIcon.BackColor = System.Drawing.Color.Black;
+            this.btnCloseIcon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCloseIcon.ForeColor = System.Drawing.Color.White;
+            this.btnCloseIcon.Location = new System.Drawing.Point(813, 4);
+            this.btnCloseIcon.Name = "btnCloseIcon";
+            this.btnCloseIcon.Size = new System.Drawing.Size(35, 25);
+            this.btnCloseIcon.TabIndex = 9;
+            this.btnCloseIcon.Text = "×";
+            this.btnCloseIcon.UseVisualStyleBackColor = false;
+            this.btnCloseIcon.Click += new System.EventHandler(this.OnClickBtnClose);
+            // 
+            // btnMinimizedIcon
+            // 
+            this.btnMinimizedIcon.BackColor = System.Drawing.Color.Black;
+            this.btnMinimizedIcon.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnMinimizedIcon.ForeColor = System.Drawing.Color.White;
+            this.btnMinimizedIcon.Location = new System.Drawing.Point(768, 4);
+            this.btnMinimizedIcon.Name = "btnMinimizedIcon";
+            this.btnMinimizedIcon.Size = new System.Drawing.Size(35, 25);
+            this.btnMinimizedIcon.TabIndex = 10;
+            this.btnMinimizedIcon.Text = "-";
+            this.btnMinimizedIcon.UseVisualStyleBackColor = false;
+            this.btnMinimizedIcon.Click += new System.EventHandler(this.OnClickBtnMinimizedIcon);
             // 
             // FormMain
             // 
@@ -230,6 +258,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(850, 650);
+            this.Controls.Add(this.btnMinimizedIcon);
+            this.Controls.Add(this.btnCloseIcon);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.groupBoxImage);
@@ -265,6 +295,8 @@
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label lblSelectFileName;
         private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnCloseIcon;
+        private System.Windows.Forms.Button btnMinimizedIcon;
     }
 }
 
