@@ -123,7 +123,7 @@ namespace ScaleNearestNeighborWinFormCSharp
 
             pictureBox.Image = null;
 
-            bool bResult = await TaskWorkImageProcessing();
+            bool bResult = await TaskWorkImageProcessing(bitmap);
             if (bResult)
             {
                 pictureBox.Image = m_scaleImgProc.bitmap;
@@ -146,14 +146,12 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
-        private async Task<bool> TaskWorkImageProcessing()
+        private async Task<bool> TaskWorkImageProcessing(Bitmap _bitmap)
         {
             m_tokenSource = new CancellationTokenSource();
             CancellationToken token = m_tokenSource.Token;
             float fScale = (float)(sliderScale.Value * 0.1);
-            var bitmap = new Bitmap(m_strOpenFileName);
-            bool bRst = await Task.Run(() => m_scaleImgProc.GoImgProc(bitmap, fScale, token, this));
-            bitmap.Dispose();
+            bool bRst = await Task.Run(() => m_scaleImgProc.GoImgProc(_bitmap, fScale, token, this));
             return bRst;
         }
 
