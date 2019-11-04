@@ -99,8 +99,8 @@ class ScaleNearestNeighbor
         return bRst;
     }
 
-    private void SetProgressBar(int nCount)
+    private void SetProgressBar(int _nCount)
     {
-        m_progressBar.Value = nCount;
+        m_progressBar.Value = _nCount;
     }
 }
