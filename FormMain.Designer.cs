@@ -235,6 +235,7 @@
             this.btnCloseIcon.Name = "btnCloseIcon";
             this.btnCloseIcon.Size = new System.Drawing.Size(35, 25);
             this.btnCloseIcon.TabIndex = 9;
+            this.btnCloseIcon.TabStop = false;
             this.btnCloseIcon.Text = "×";
             this.btnCloseIcon.UseVisualStyleBackColor = false;
             this.btnCloseIcon.Click += new System.EventHandler(this.OnClickBtnClose);
@@ -248,6 +249,7 @@
             this.btnMinimizedIcon.Name = "btnMinimizedIcon";
             this.btnMinimizedIcon.Size = new System.Drawing.Size(35, 25);
             this.btnMinimizedIcon.TabIndex = 10;
+            this.btnMinimizedIcon.TabStop = false;
             this.btnMinimizedIcon.Text = "-";
             this.btnMinimizedIcon.UseVisualStyleBackColor = false;
             this.btnMinimizedIcon.Click += new System.EventHandler(this.OnClickBtnMinimizedIcon);

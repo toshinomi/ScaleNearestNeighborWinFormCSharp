@@ -70,14 +70,13 @@ class ScaleNearestNeighbor
                     }
 
                     int nWidth = (int)Math.Round(nIdxWidth / _fScale);
-                    int nHeight = (int)Math.Round(nIdxHeight / _fScale);
+                    int nHeight = (int)Math.Round(nIdxHeight / _fScale);    
 
                     if (nWidth < _bitmap.Width && nHeight < _bitmap.Height)
                     {
 
                         byte* pPixelOrg = (byte*)bitmapDataOrg.Scan0 + nHeight * bitmapDataOrg.Stride + nWidth * 4;
                         byte* pPixelAfter = (byte*)bitmapDataAfter.Scan0 + nIdxHeight * bitmapDataAfter.Stride + nIdxWidth * 4;
-
 
                         pPixelAfter[(int)ComInfo.Pixel.B] = pPixelOrg[(int)ComInfo.Pixel.B];
                         pPixelAfter[(int)ComInfo.Pixel.G] = pPixelOrg[(int)ComInfo.Pixel.G];
