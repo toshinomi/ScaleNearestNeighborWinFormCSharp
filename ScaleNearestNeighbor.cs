@@ -127,6 +127,10 @@ class ScaleNearestNeighbor
         return bRst;
     }
 
+    /// <summary>
+    /// プログレスバーの設定
+    /// </summary>
+    /// <param name="_nCount">カウント</param>
     private void SetProgressBar(int _nCount)
     {
         m_progressBar.Value = _nCount;
