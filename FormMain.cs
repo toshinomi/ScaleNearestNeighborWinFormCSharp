@@ -246,6 +246,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// 最小化ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnMinimizedIcon(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
