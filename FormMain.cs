@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace ScaleNearestNeighborWinFormCSharp
 {
+    /// <summary>
+    /// MainFormのロジック
+    /// </summary>
     public partial class FormMain : Form
     {
         private Point m_mousePoint;
@@ -19,6 +22,9 @@ namespace ScaleNearestNeighborWinFormCSharp
         private ScaleNearestNeighbor m_scaleImgProc;
         private CancellationTokenSource m_tokenSource;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
@@ -32,6 +38,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = false;
         }
 
+        /// <summary>
+        /// タイトルバーマウスダウンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnMouseDownLblTitle(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -42,6 +53,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// タイトルバーマウスムーブのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnMouseMoveLblTitle(object sender, MouseEventArgs e)
         {
             if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
@@ -53,6 +69,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// ファイル選択ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnFileSelect(object sender, EventArgs e)
         {
             ComOpenFileDialog openFileDlg = new ComOpenFileDialog();
@@ -70,6 +91,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// 閉じるボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnClose(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Close the application ?", "Question", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
@@ -81,6 +107,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// 初期化ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnInit(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(m_strOpenFileName))
@@ -91,6 +122,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             btnSaveImage.Enabled = false;
         }
 
+        /// <summary>
+        /// スケールのスライダーのスクロールイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnScrollSliderScale(object sender, EventArgs e)
         {
             labelValue.Text = (sliderScale.Value * 0.1).ToString();
@@ -98,6 +134,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// 最近傍補間法実行ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private async void OnClickBtnGo(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(m_strOpenFileName))
@@ -146,6 +187,10 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// 画像処理実行用のタスク
+        /// </summary>
+        /// <returns>画像処理の実行結果 成功/失敗</returns>
         private async Task<bool> TaskWorkImageProcessing(Bitmap _bitmap)
         {
             m_tokenSource = new CancellationTokenSource();
@@ -155,6 +200,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return bRst;
         }
 
+        /// <summary>
+        /// イメージの保存ボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnSaveImage(object sender, EventArgs e)
         {
             ComSaveFileDialog saveDialog = new ComSaveFileDialog();
@@ -181,6 +231,11 @@ namespace ScaleNearestNeighborWinFormCSharp
             return;
         }
 
+        /// <summary>
+        /// ストップボタンのクリックイベント
+        /// </summary>
+        /// <param name="sender">オブジェクト</param>
+        /// <param name="e">イベントのデータ</param>
         private void OnClickBtnStop(object sender, EventArgs e)
         {
             if (m_tokenSource != null)
